@@ -14,12 +14,7 @@ const CharacterList = () => {
   const { loading, error, data } = useQuery(fetchDataQuery, {
     variables: { page: page || 1, status: status || null, species: species || null },
   });
-  console.log("Loading:", loading);
-  console.log("Error:", error?.message);
-  console.log("Data:", data);
 
-  //if (loading) return <Spin tip="Loading characters.. Please wait"></Spin>;
-  //if (error) return <Alert message="Error loading data" type="error"></Alert>;
 
   let characters = data?.characters?.results || [];
 
@@ -56,8 +51,8 @@ const CharacterList = () => {
           { title: "Origin", dataIndex: ["origin", "name"], key: "origin" },
         ]}
         pagination={{
-          total: data?.characters?.info?.pages * 10,
-          pageSize: 10,
+          total: data?.characters?.results.length * data?.characters?.info.pages,
+          pageSize: 100,
           current: page,
           onChange: setPage,
         }}

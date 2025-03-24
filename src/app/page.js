@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import CharacterList from "../components/CharacterList";
 import React, { useState } from "react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-
+import {redirect} from "next/navigation"
 export default function Home() {
-  return <h1>Hi</h1>;
+  redirect("/characters");
 }
